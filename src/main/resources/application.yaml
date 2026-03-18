@@ -1,0 +1,33 @@
+quarkus:
+  datasource:
+    db-kind: 'postgresql'
+    username: 'admin'
+    password: 'admin'
+    jdbc:
+      url: 'jdbc:postgresql://localhost:5432/performance'
+      max-size : '16'
+  hibernate-orm:
+    log:
+      sql: 'true'
+      format-sql: 'true'
+    database:
+      generation: update
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
+
+mp:
+  messaging:
+    outgoing:
+      payments-out:
+        connector: smallrye-kafka
+        topic: payments-send
+        value:
+          serializer: org.apache.kafka.common.serialization.StringSerializer
+#    incoming:
+#      payments-in:
+#        connector: smallrye-kafka
+#        topic: payments-received
+#        value:
+#          deserializer: org.apache.kafka.common.serialization.StringDeserializer
