@@ -1,17 +1,24 @@
 quarkus:
   datasource:
-    db-kind: 'postgresql'
-    username: 'admin'
-    password: 'admin'
+    db-kind: postgresql
+    username: admin
+    password: admin
     jdbc:
-      url: 'jdbc:postgresql://localhost:5432/performance'
-      max-size : '16'
+      url: jdbc:postgresql://localhost:5432/performance
+      max-size: 16
   hibernate-orm:
     log:
-      sql: 'true'
-      format-sql: 'true'
+      sql: true
+      format-sql: true
     database:
       generation: update
+  micrometer:
+    export:
+      prometheus:
+        enabled: true
+  binder:
+    http-server: true
+    jvm: true
 
 kafka:
   bootstrap:
